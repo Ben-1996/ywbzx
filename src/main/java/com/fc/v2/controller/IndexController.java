@@ -28,7 +28,7 @@ public class IndexController extends BaseController{
 	@ApiOperation(value="前台",notes="前台")
 	@GetMapping("/")
 	public String index(ModelMap map) {
-    	return "index";
+    	return "web/index";
 	}
 	/**
 	 * 前台访问/index的get请求
@@ -40,6 +40,6 @@ public class IndexController extends BaseController{
 	@ApiOperation(value="前台",notes="前台")
 	@GetMapping("/index")
 	public String index2(ModelMap map) {
-		return "index";
+		return "web/index";
 	}
 }
