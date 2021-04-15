@@ -106,7 +106,8 @@ public class AdminController extends BaseController {
 	public AjaxResult login(TsysUser user, String captcha, RedirectAttributes redirectAttributes, boolean rememberMe,
 			HttpServletRequest request) {
 		// ModelAndView view =new ModelAndView();
-		Boolean yz = false;
+		//关闭验证码
+		Boolean yz = true;
 		// 获取session中的验证码
 		String verCode = (String) request.getSession().getAttribute("captcha");
 		 // 判断验证码
