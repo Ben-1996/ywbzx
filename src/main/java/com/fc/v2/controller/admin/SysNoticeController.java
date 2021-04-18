@@ -5,7 +5,7 @@ import com.fc.v2.common.domain.AjaxResult;
 import com.fc.v2.common.domain.ResultTable;
 import com.fc.v2.model.auto.SysNotice;
 import com.fc.v2.model.custom.Tablepar;
-import com.fc.v2.service.SysNoticeService;
+import com.fc.v2.service.auto.SysNoticeService;
 import com.fc.v2.shiro.util.ShiroUtils;
 import com.github.pagehelper.PageInfo;
 import io.swagger.annotations.Api;

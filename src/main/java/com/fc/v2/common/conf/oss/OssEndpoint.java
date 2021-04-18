@@ -23,7 +23,7 @@ import com.amazonaws.services.s3.model.S3Object;
 import com.amazonaws.services.s3.model.S3ObjectSummary;
 import com.fc.v2.common.domain.AjaxResult;
 import com.fc.v2.model.auto.SysFile;
-import com.fc.v2.service.SysFileService;
+import com.fc.v2.service.auto.SysFileService;
 import com.fc.v2.shiro.util.ShiroUtils;
 import com.fc.v2.util.SnowflakeIdWorker;
 import org.springframework.beans.factory.annotation.Autowired;

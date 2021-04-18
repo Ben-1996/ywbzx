@@ -1,4 +1,4 @@
-package com.fc.v2.service;
+package com.fc.v2.service.auto;
 
 import com.fc.v2.mapper.auto.TSysDictDataMapper;
 import com.fc.v2.model.auto.TSysDictData;

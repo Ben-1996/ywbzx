@@ -2,7 +2,7 @@ package com.fc.v2.common.log;
 
 import com.fc.v2.model.auto.TsysOperLog;
 import com.fc.v2.model.auto.TsysUser;
-import com.fc.v2.service.SysOperLogService;
+import com.fc.v2.service.auto.SysOperLogService;
 import com.fc.v2.shiro.util.ShiroUtils;
 import com.fc.v2.util.ServletUtils;
 import com.fc.v2.util.StringUtils;

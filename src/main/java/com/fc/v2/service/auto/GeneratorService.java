@@ -1,4 +1,4 @@
-package com.fc.v2.service;
+package com.fc.v2.service.auto;
 
 import cn.hutool.json.JSONUtil;
 import com.fc.v2.mapper.auto.GeneratorMapper;
