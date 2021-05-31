@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fc.v2.course.dao.WbTeacherDao">
+
+	<select id="get" resultType="com.fc.v2.course.domain.WbTeacherDO">
+		select `id`,`add_time`,`update_time`,`status`,`name`,`img`,`age`,`info` from t_wb_teacher where id = #{value}
+	</select>
+
+	<select id="list" resultType="com.fc.v2.course.domain.WbTeacherDO">
+		select `id`,`add_time`,`update_time`,`status`,`name`,`img`,`age`,`info` from t_wb_teacher
+        <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="addTime != null and addTime != ''"> and add_time = #{addTime} </if>
+		  		  <if test="updateTime != null and updateTime != ''"> and update_time = #{updateTime} </if>
+		  		  <if test="status != null and status != ''"> and status = #{status} </if>
+		  		  <if test="name != null and name != ''"> and name = #{name} </if>
+		  		  <if test="img != null and img != ''"> and img = #{img} </if>
+		  		  <if test="age != null and age != ''"> and age = #{age} </if>
+		  		  <if test="info != null and info != ''"> and info = #{info} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from t_wb_teacher
+		 <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="addTime != null and addTime != ''"> and add_time = #{addTime} </if>
+		  		  <if test="updateTime != null and updateTime != ''"> and update_time = #{updateTime} </if>
+		  		  <if test="status != null and status != ''"> and status = #{status} </if>
+		  		  <if test="name != null and name != ''"> and name = #{name} </if>
+		  		  <if test="img != null and img != ''"> and img = #{img} </if>
+		  		  <if test="age != null and age != ''"> and age = #{age} </if>
+		  		  <if test="info != null and info != ''"> and info = #{info} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.fc.v2.course.domain.WbTeacherDO" useGeneratedKeys="true" keyProperty="id">
+		insert into t_wb_teacher
+		(
+			`add_time`, 
+			`update_time`, 
+			`status`, 
+			`name`, 
+			`img`, 
+			`age`, 
+			`info`
+		)
+		values
+		(
+			#{addTime}, 
+			#{updateTime}, 
+			#{status}, 
+			#{name}, 
+			#{img}, 
+			#{age}, 
+			#{info}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.fc.v2.course.domain.WbTeacherDO">
+		update t_wb_teacher 
+		<set>
+			<if test="addTime != null">`add_time` = #{addTime}, </if>
+			<if test="updateTime != null">`update_time` = #{updateTime}, </if>
+			<if test="status != null">`status` = #{status}, </if>
+			<if test="name != null">`name` = #{name}, </if>
+			<if test="img != null">`img` = #{img}, </if>
+			<if test="age != null">`age` = #{age}, </if>
+			<if test="info != null">`info` = #{info}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="remove">
+		delete from t_wb_teacher where id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from t_wb_teacher where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

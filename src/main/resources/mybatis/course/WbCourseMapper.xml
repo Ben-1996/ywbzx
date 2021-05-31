@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.fc.v2.course.dao.WbCourseDao">
+
+	<select id="get" resultType="com.fc.v2.course.domain.WbCourseDO">
+		select `id`,`add_time`,`update_time`,`status`,`course_id`,`teacher_id`,`title`,`info`,`videourl`,`imgurl` from t_wb_course where id = #{value}
+	</select>
+
+	<select id="list" resultType="com.fc.v2.course.domain.WbCourseDO">
+		select `id`,`add_time`,`update_time`,`status`,`course_id`,`teacher_id`,`title`,`info`,`videourl`,`imgurl` from t_wb_course
+        <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="addTime != null and addTime != ''"> and add_time = #{addTime} </if>
+		  		  <if test="updateTime != null and updateTime != ''"> and update_time = #{updateTime} </if>
+		  		  <if test="status != null and status != ''"> and status = #{status} </if>
+		  		  <if test="courseId != null and courseId != ''"> and course_id = #{courseId} </if>
+		  		  <if test="teacherId != null and teacherId != ''"> and teacher_id = #{teacherId} </if>
+		  		  <if test="title != null and title != ''"> and title = #{title} </if>
+		  		  <if test="info != null and info != ''"> and info = #{info} </if>
+		  		  <if test="videourl != null and videourl != ''"> and videourl = #{videourl} </if>
+		  		  <if test="imgurl != null and imgurl != ''"> and imgurl = #{imgurl} </if>
+		  		</where>
+        <choose>
+            <when test="sort != null and sort.trim() != ''">
+                order by ${sort} ${order}
+            </when>
+			<otherwise>
+                order by id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+	
+ 	<select id="count" resultType="int">
+		select count(*) from t_wb_course
+		 <where>  
+		  		  <if test="id != null and id != ''"> and id = #{id} </if>
+		  		  <if test="addTime != null and addTime != ''"> and add_time = #{addTime} </if>
+		  		  <if test="updateTime != null and updateTime != ''"> and update_time = #{updateTime} </if>
+		  		  <if test="status != null and status != ''"> and status = #{status} </if>
+		  		  <if test="courseId != null and courseId != ''"> and course_id = #{courseId} </if>
+		  		  <if test="teacherId != null and teacherId != ''"> and teacher_id = #{teacherId} </if>
+		  		  <if test="title != null and title != ''"> and title = #{title} </if>
+		  		  <if test="info != null and info != ''"> and info = #{info} </if>
+		  		  <if test="videourl != null and videourl != ''"> and videourl = #{videourl} </if>
+		  		  <if test="imgurl != null and imgurl != ''"> and imgurl = #{imgurl} </if>
+		  		</where>
+	</select>
+	 
+	<insert id="save" parameterType="com.fc.v2.course.domain.WbCourseDO" useGeneratedKeys="true" keyProperty="id">
+		insert into t_wb_course
+		(
+			`add_time`, 
+			`update_time`, 
+			`status`, 
+			`course_id`, 
+			`teacher_id`, 
+			`title`, 
+			`info`, 
+			`videourl`, 
+			`imgurl`
+		)
+		values
+		(
+			#{addTime}, 
+			#{updateTime}, 
+			#{status}, 
+			#{courseId}, 
+			#{teacherId}, 
+			#{title}, 
+			#{info}, 
+			#{videourl}, 
+			#{imgurl}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="com.fc.v2.course.domain.WbCourseDO">
+		update t_wb_course 
+		<set>
+			<if test="addTime != null">`add_time` = #{addTime}, </if>
+			<if test="updateTime != null">`update_time` = #{updateTime}, </if>
+			<if test="status != null">`status` = #{status}, </if>
+			<if test="courseId != null">`course_id` = #{courseId}, </if>
+			<if test="teacherId != null">`teacher_id` = #{teacherId}, </if>
+			<if test="title != null">`title` = #{title}, </if>
+			<if test="info != null">`info` = #{info}, </if>
+			<if test="videourl != null">`videourl` = #{videourl}, </if>
+			<if test="imgurl != null">`imgurl` = #{imgurl}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="remove">
+		delete from t_wb_course where id = #{value}
+	</delete>
+	
+	<delete id="batchRemove">
+		delete from t_wb_course where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

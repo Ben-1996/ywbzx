@@ -8,15 +8,15 @@
     -->
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="name" jdbcType="VARCHAR" property="name" />
-    <result column="teacherId" jdbcType="INTEGER" property="teacherid" />
+    <result column="teacherId" jdbcType="VARCHAR" property="teacherid" />
     <result column="hour" jdbcType="VARCHAR" property="hour" />
     <result column="price" jdbcType="DECIMAL" property="price" />
     <result column="imgPath" jdbcType="VARCHAR" property="imgpath" />
-    <result column="order" jdbcType="VARCHAR" property="order" />
+    <result column="num" jdbcType="VARCHAR" property="num" />
   </resultMap>
 
   <sql id="Base_Column_List">
-    id, name, teacherId, hour, price, imgPath, order
+    id, name, teacherId, hour, price, imgPath, num
   </sql>
   <select id="select" parameterType="com.fc.v2.model.kcgl.Course" resultMap="BaseResultMap">
     select
@@ -35,12 +35,12 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.fc.v2.model.kcgl.Course">
-    insert into t_wb_course (id, name, teacherId, 
-      hour, price, imgPath, 
-      order)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{teacherid,jdbcType=INTEGER}, 
+    insert into t_wb_course (id, name, teacherId,
+      hour, price, imgPath,
+      num)
+    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{teacherid,jdbcType=INTEGER},
       #{hour,jdbcType=VARCHAR}, #{price,jdbcType=DECIMAL}, #{imgpath,jdbcType=VARCHAR}, 
-      #{order,jdbcType=VARCHAR})
+      #{num,jdbcType=VARCHAR})
   </insert>
   <update id="updateById" parameterType="com.fc.v2.model.kcgl.Course">
     update t_wb_course
@@ -49,7 +49,7 @@
       hour = #{hour,jdbcType=VARCHAR},
       price = #{price,jdbcType=DECIMAL},
       imgPath = #{imgpath,jdbcType=VARCHAR},
-      order = #{order,jdbcType=VARCHAR}
+      num = #{num,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

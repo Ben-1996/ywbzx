@@ -9,15 +9,15 @@
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="partName" jdbcType="VARCHAR" property="partname" />
     <result column="teacherId" jdbcType="VARCHAR" property="teacherid" />
-    <result column="courseId" jdbcType="INTEGER" property="courseid" />
-    <result column="order" jdbcType="VARCHAR" property="order" />
+    <result column="courseId" jdbcType="VARCHAR" property="courseid" />
+    <result column="num" jdbcType="VARCHAR" property="num" />
     <result column="videoPath" jdbcType="VARCHAR" property="videopath" />
   </resultMap>
 
   <sql id="Base_Column_List">
-    id, partName, teacherId, courseId, order, videoPath
+    id, partName, teacherId, courseId, num, videoPath
   </sql>
-  <select id="selectByExample" parameterType="com.fc.v2.model.kcgl.CoursePart" resultMap="BaseResultMap">
+  <select id="select" parameterType="com.fc.v2.model.kcgl.CoursePart" resultMap="BaseResultMap">
     select
     <include refid="Base_Column_List" />
     from t_wb_course_part
@@ -34,11 +34,11 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.fc.v2.model.kcgl.CoursePart">
-    insert into t_wb_course_part (id, partName, teacherId, 
-      courseId, order, videoPath
+    insert into t_wb_course_part (id, partName, teacherId,
+      courseId, num, videoPath
       )
-    values (#{id,jdbcType=INTEGER}, #{partname,jdbcType=VARCHAR}, #{teacherid,jdbcType=VARCHAR}, 
-      #{courseid,jdbcType=INTEGER}, #{order,jdbcType=VARCHAR}, #{videopath,jdbcType=VARCHAR}
+    values (#{id,jdbcType=INTEGER}, #{partname,jdbcType=VARCHAR}, #{teacherid,jdbcType=VARCHAR},
+      #{courseid,jdbcType=INTEGER}, #{num,jdbcType=VARCHAR}, #{videopath,jdbcType=VARCHAR}
       )
   </insert>
   <update id="updateById" parameterType="com.fc.v2.model.kcgl.CoursePart">
@@ -46,7 +46,7 @@
     set partName = #{partname,jdbcType=VARCHAR},
       teacherId = #{teacherid,jdbcType=VARCHAR},
       courseId = #{courseid,jdbcType=INTEGER},
-      order = #{order,jdbcType=VARCHAR},
+      num = #{num,jdbcType=VARCHAR},
       videoPath = #{videopath,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
